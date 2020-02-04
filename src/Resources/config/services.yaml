@@ -1,0 +1,45 @@
+parameters:
+
+services:
+    _defaults:
+        autowire: false
+        autoconfigure: false
+        public: false
+
+    Negotiation\Negotiator:
+        public: false
+
+    GisoStallenberg\Bundle\ResponseContentNegotiationBundle\Content\ResultServiceLocator:
+        public: true
+        arguments:
+            $negotiator: '@Negotiation\Negotiator'
+        calls:
+            - method: setContainer
+              arguments:
+                  - '@service_container'
+
+    GisoStallenberg\Bundle\ResponseContentNegotiationBundle\EventSubscriber\ResultSubscriber:
+        tags:
+            - { name: kernel.event_listener, event: kernel.view }
+
+    GisoStallenberg\Bundle\ResponseContentNegotiationBundle\Content\ResultServiceLocator::html:
+        class: 'GisoStallenberg\Bundle\ResponseContentNegotiationBundle\Content\HtmlResult'
+        public: true
+        arguments:
+            $request: '@request_stack'
+            $twig: '@twig'
+
+    GisoStallenberg\Bundle\ResponseContentNegotiationBundle\Content\ResultServiceLocator::json:
+        class: 'GisoStallenberg\Bundle\ResponseContentNegotiationBundle\Content\JsonResult'
+        public: true
+        arguments:
+            $request: '@request_stack'
+            $serializer: '@fos_rest.serializer'
+
+    GisoStallenberg\Bundle\ResponseContentNegotiationBundle\Content\ResultServiceLocator::xml:
+        class: 'GisoStallenberg\Bundle\ResponseContentNegotiationBundle\Content\XmlResult'
+        public: true
+        arguments:
+            $request: '@request_stack'
+            $serializer: '@fos_rest.serializer'
+

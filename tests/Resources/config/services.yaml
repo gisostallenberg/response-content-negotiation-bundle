@@ -1,0 +1,10 @@
+parameters:
+
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+        public: false
+
+    GisoStallenberg\Bundle\Tests\ResponseContentNegotiationBundle\Controller\ResultController:
+        tags: ['controller.service_arguments']
