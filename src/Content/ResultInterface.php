@@ -13,9 +13,9 @@ use Symfony\Component\HttpFoundation\Response;
 
 interface ResultInterface
 {
-    public function setResultData(ResultData $resultData): self;
+    public function setResultData(ResultDataInterface $resultData): self;
 
-    public function getResultData(): ?ResultData;
+    public function getResultData(): ?ResultDataInterface;
 
     public function getResponse(): Response;
 }
