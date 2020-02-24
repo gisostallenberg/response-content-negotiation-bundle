@@ -18,7 +18,7 @@ services:
               arguments:
                   - '@service_container'
 
-    GisoStallenberg\Bundle\ResponseContentNegotiationBundle\Content\ResultServiceLocatorInterface: 'GisoStallenberg\Bundle\ResponseContentNegotiationBundle\Content\ResultServiceLocator'
+    GisoStallenberg\Bundle\ResponseContentNegotiationBundle\Content\ResultServiceLocatorInterface: '@GisoStallenberg\Bundle\ResponseContentNegotiationBundle\Content\ResultServiceLocator'
 
     GisoStallenberg\Bundle\ResponseContentNegotiationBundle\EventSubscriber\ResultSubscriber:
         tags:
