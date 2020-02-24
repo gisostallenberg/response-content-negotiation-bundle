@@ -18,6 +18,8 @@ services:
               arguments:
                   - '@service_container'
 
+    GisoStallenberg\Bundle\ResponseContentNegotiationBundle\Content\ResultServiceLocatorInterface: 'GisoStallenberg\Bundle\ResponseContentNegotiationBundle\Content\ResultServiceLocator'
+
     GisoStallenberg\Bundle\ResponseContentNegotiationBundle\EventSubscriber\ResultSubscriber:
         tags:
             - { name: kernel.event_listener, event: kernel.view }

@@ -11,11 +11,10 @@ namespace GisoStallenberg\Bundle\ResponseContentNegotiationBundle\Content;
 
 use Negotiation\Accept;
 use Negotiation\Negotiator;
-use Symfony\Component\DependencyInjection\ServiceSubscriberInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Contracts\Service\ServiceSubscriberTrait;
 
-class ResultServiceLocator implements ServiceSubscriberInterface
+class ResultServiceLocator implements ResultServiceLocatorInterface
 {
     use ServiceSubscriberTrait;
 
@@ -30,7 +29,7 @@ class ResultServiceLocator implements ServiceSubscriberInterface
         $this->negotiator = $negotiator;
     }
 
-    public function getResult(Request $request, ResultDataInterface $resultData): Result
+    public function getResult(Request $request, ResultDataInterface $resultData): ResultInterface
     {
         $format = $this->getFormat($request);
         $result = $this->container->get(sprintf('%s::%s', __CLASS__, $format));
