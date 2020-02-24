@@ -42,6 +42,15 @@ class AcmeController
 ### HTML
 This will render `acme.html.twig` with the Twig context `['my-data-label' => 'my data']`.
 
+If you want to render a specific template, you can add this as `template` argument to the ResultData.
+For example:
+
+```php
+new ResultData('acme', ['my-data-label' => 'my data'], ['template' => '@AcmeBundle/templates/acme.twig.html'])
+```
+
+This will render `@AcmeBundle/templates/acme.twig.html` with the Twig context `['my-data-label' => 'my data']`.
+
 ### JSON
 This will respond with
 ```json

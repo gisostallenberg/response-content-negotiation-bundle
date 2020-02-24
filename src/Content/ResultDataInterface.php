@@ -17,4 +17,16 @@ interface ResultDataInterface
      * @return array<mixed, mixed>
      */
     public function getData(): array;
+
+    /**
+     * @return mixed Contents of array key
+     */
+    public function getArgument(string $key);
+
+    /**
+     * @param mixed $value
+     */
+    public function setArgument(string $key, $value): self;
+
+    public function hasArgument(string $key): bool;
 }
