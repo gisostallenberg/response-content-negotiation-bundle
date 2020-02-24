@@ -13,9 +13,15 @@ use Symfony\Component\HttpFoundation\RequestStack;
 
 abstract class Result implements ResultInterface
 {
-    private RequestStack $request;
+    /**
+     * @var RequestStack
+     */
+    private $request;
 
-    private ResultData $resultData;
+    /**
+     * @var ResultData
+     */
+    private $resultData;
 
     public function __construct(RequestStack $request)
     {

@@ -18,7 +18,7 @@ class HtmlResult extends Result
     /**
      * @var Environment
      */
-    private Environment $twig;
+    private $twig;
 
     public function __construct(RequestStack $request, Environment $twig)
     {

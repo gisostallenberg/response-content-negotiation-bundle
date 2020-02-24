@@ -19,7 +19,10 @@ class ResultServiceLocator implements ServiceSubscriberInterface
 {
     use ServiceSubscriberTrait;
 
-    private Negotiator $negotiator;
+    /**
+     * @var Negotiator
+     */
+    private $negotiator;
 
     public function __construct(
         Negotiator $negotiator

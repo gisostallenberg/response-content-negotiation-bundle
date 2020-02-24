@@ -11,12 +11,15 @@ namespace GisoStallenberg\Bundle\ResponseContentNegotiationBundle\Content;
 
 class ResultData implements ResultDataInterface
 {
-    private string $name;
+    /**
+     * @var string
+     */
+    private $name;
 
     /**
      * @var array<mixed, mixed>
      */
-    private array $data = [];
+    private $data = [];
 
     /**
      * @param array<mixed, mixed> $data

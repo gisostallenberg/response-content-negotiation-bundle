@@ -17,7 +17,7 @@ abstract class SerializedResult extends Result
     /**
      * @var Serializer
      */
-    private Serializer $serializer;
+    private $serializer;
 
     public function __construct(RequestStack $request, Serializer $serializer)
     {
