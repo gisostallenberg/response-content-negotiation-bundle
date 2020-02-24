@@ -19,7 +19,7 @@ abstract class Result implements ResultInterface
     private $request;
 
     /**
-     * @var ResultData
+     * @var ResultDataInterface
      */
     private $resultData;
 
@@ -28,14 +28,14 @@ abstract class Result implements ResultInterface
         $this->request = $request;
     }
 
-    public function setResultData(ResultData $resultData): ResultInterface
+    public function setResultData(ResultDataInterface $resultData): ResultInterface
     {
         $this->resultData = $resultData;
 
         return $this;
     }
 
-    public function getResultData(): ?ResultData
+    public function getResultData(): ?ResultDataInterface
     {
         return $this->resultData;
     }
