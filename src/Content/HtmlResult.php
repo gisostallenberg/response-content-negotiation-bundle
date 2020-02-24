@@ -30,10 +30,20 @@ class HtmlResult extends Result
     public function getResponse(): Response
     {
         $resultData = $this->getResultData();
+        $template   = $this->getTemplate($resultData);
 
         return new Response($this->twig->render(
-            $resultData->getName().'.html.twig', // TODO: locate templates to render
+            $template,
             $resultData->getData()
         ));
+    }
+
+    private function getTemplate(ResultDataInterface $resultData): string
+    {
+        if ($resultData->hasArgument('template')) {
+            return $resultData->getArgument('template');
+        }
+
+        return $resultData->getName().'.html.twig';
     }
 }
