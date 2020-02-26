@@ -9,7 +9,6 @@ declare(strict_types=1);
 
 namespace GisoStallenberg\Bundle\ResponseContentNegotiationBundle\Content;
 
-use FOS\RestBundle\Context\Context;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -17,8 +16,10 @@ class JsonResult extends SerializedResult
 {
     public function getResponse(): Response
     {
+        $context = $this->getContext();
+
         return new JsonResponse(
-            $this->getSerializer()->serialize($this->getResultData()->getData(), 'json', new Context()),
+            $this->getSerializer()->serialize($this->getResultData()->getData(), 'json', $context),
             Response::HTTP_OK,
             [],
             true
