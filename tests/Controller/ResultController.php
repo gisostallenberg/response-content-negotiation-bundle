@@ -24,6 +24,16 @@ class ResultController
         ResultServiceLocator $resultServiceLocator,
         Request $request
     ): ResultInterface {
+        return $resultServiceLocator->getResult($request, new ResultData('test', ['test' => 'result data'], ['template' => 'test.html.twig', 'groups' => ['foo', 'bar']]));
+    }
+
+    /**
+     * @Route("/get/result-with-default", methods={"GET"})
+     */
+    public function resultActionWithDefault(
+        ResultServiceLocator $resultServiceLocator,
+        Request $request
+    ): ResultInterface {
         return $resultServiceLocator->getResult($request, new ResultData('test', ['test' => 'result data']));
     }
 }
