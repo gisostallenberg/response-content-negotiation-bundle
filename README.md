@@ -1,3 +1,8 @@
+[![Latest Stable Version](https://poser.pugx.org/gisostallenberg/response-content-negotiation-bundle/v/stable)](https://packagist.org/packages/gisostallenberg/response-content-negotiation-bundle)
+[![Latest Unstable Version](https://poser.pugx.org/gisostallenberg/response-content-negotiation-bundle/v/unstable)](https://packagist.org/packages/gisostallenberg/response-content-negotiation-bundle)
+[![Total Downloads](https://poser.pugx.org/gisostallenberg/response-content-negotiation-bundle/downloads)](https://packagist.org/packages/gisostallenberg/response-content-negotiation-bundle)
+[![License](https://poser.pugx.org/gisostallenberg/response-content-negotiation-bundle/license)](https://packagist.org/packages/gisostallenberg/response-content-negotiation-bundle)
+
 # Response Content Negotiation Bundle
 
 A bundle that allows creating various Response types from a controller, based on content negotiation
@@ -60,9 +65,18 @@ This will respond with
 ```
 
 ### XML
-This will respond with 
+This will respond with
 ```xml
 <my-data-label>
     <entry>my data</entry>
 <my-data-label>
+```
+
+### Serialization
+
+To use serialization groups in the serialization process, you can add the `groups` option parameter.
+For example:
+
+```php
+new ResultData('acme', ['my-data-label' => 'my data'], ['groups' => ['profile', 'list']])
 ```
