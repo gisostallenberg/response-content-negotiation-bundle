@@ -48,19 +48,4 @@ class ResultServiceLocator implements ResultServiceLocatorInterface
 
         return $event->getSubject();
     }
-
-    private function html(): HtmlResult
-    {
-        return $this->container->get(__METHOD__);
-    }
-
-    private function json(): JsonResult
-    {
-        return $this->container->get(__METHOD__);
-    }
-
-    private function xml(): XmlResult
-    {
-        return $this->container->get(__METHOD__);
-    }
 }
