@@ -10,8 +10,7 @@ declare(strict_types=1);
 namespace GisoStallenberg\Bundle\ResponseContentNegotiationBundle\Content;
 
 use GisoStallenberg\Bundle\ResponseContentNegotiationBundle\Event\NegotiatedResultDataEvent;
-use Negotiation\Accept;
-use Negotiation\Negotiator;
+use GisoStallenberg\Bundle\ResponseContentNegotiationBundle\Negotiation\NegotiatorInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Contracts\EventDispatcher\EventDispatcherInterface;
 use Symfony\Contracts\Service\ServiceSubscriberTrait;
@@ -21,7 +20,7 @@ class ResultServiceLocator implements ResultServiceLocatorInterface
     use ServiceSubscriberTrait;
 
     /**
-     * @var Negotiator
+     * @var NegotiatorInterface
      */
     private $negotiator;
 
@@ -31,7 +30,7 @@ class ResultServiceLocator implements ResultServiceLocatorInterface
     private $eventDispatcher;
 
     public function __construct(
-        Negotiator $negotiator,
+        NegotiatorInterface $negotiator,
         EventDispatcherInterface $eventDispatcher
     ) {
         $this->negotiator      = $negotiator;
@@ -40,7 +39,7 @@ class ResultServiceLocator implements ResultServiceLocatorInterface
 
     public function getResult(Request $request, ResultDataInterface $resultData): ResultInterface
     {
-        $format = $this->getFormat($request);
+        $format = $this->negotiator->getResult($request);
         $result = $this->container->get(sprintf('%s::%s', __CLASS__, $format));
         $event  = new NegotiatedResultDataEvent($result);
 
@@ -48,26 +47,6 @@ class ResultServiceLocator implements ResultServiceLocatorInterface
         $this->eventDispatcher->dispatch($event);
 
         return $event->getSubject();
-    }
-
-    private function getFormat(Request $request): string
-    {
-        $mediaType = $this->negotiator->getBest(
-            $request->headers->get('accept'),
-            [
-                'text/html',
-                'application/json',
-                'application/xml',
-            ]
-        );
-        if ($mediaType instanceof Accept) {
-            $format = $mediaType->getSubPart();
-        }
-        if (!isset($format)) {
-            $format = $request->getRequestFormat();
-        }
-
-        return $format ?? 'html';
     }
 
     private function html(): HtmlResult
