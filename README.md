@@ -66,3 +66,12 @@ This will respond with
     <entry>my data</entry>
 <my-data-label>
 ```
+
+### Serialization
+
+To use serialization groups in the serialization process, you can add the `groups` option parameter.
+For example:
+
+```php
+new ResultData('acme', ['my-data-label' => 'my data'], ['groups' => ['profile', 'list']])
+```
