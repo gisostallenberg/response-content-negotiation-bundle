@@ -52,6 +52,33 @@ class ResultControllerTest extends WebTestCase
         );
     }
 
+    public function testHtmlWithDefaultTemplate(): void
+    {
+        $client = static::createClient();
+
+        $client->request('GET', '/get/result-with-default', [], [], ['HTTP_ACCEPT' => 'text/html']);
+        $this->assertEquals(200, $client->getResponse()->getStatusCode());
+        $content = $client->getResponse()->getContent();
+        if ($content === false) {
+            $this->fail('There is no response content');
+
+            return;
+        }
+
+        $fileContents = @file_get_contents(__DIR__.'/../Resources/views/test.html.twig');
+        if ($fileContents === false) {
+            $this->fail('The data can not be tested');
+
+            return;
+        }
+
+        $expectedXml = str_replace('{{ test }}', 'result data', $fileContents);
+        $this->assertXmlStringEqualsXmlString(
+            $expectedXml,
+            $content
+        );
+    }
+
     public function testJson(): void
     {
         $client = static::createClient();

@@ -9,9 +9,11 @@ declare(strict_types=1);
 
 namespace GisoStallenberg\Bundle\ResponseContentNegotiationBundle\Content;
 
+use GisoStallenberg\Bundle\ResponseContentNegotiationBundle\Event\NegotiatedResultDataEvent;
 use Negotiation\Accept;
 use Negotiation\Negotiator;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Contracts\EventDispatcher\EventDispatcherInterface;
 use Symfony\Contracts\Service\ServiceSubscriberTrait;
 
 class ResultServiceLocator implements ResultServiceLocatorInterface
@@ -23,21 +25,29 @@ class ResultServiceLocator implements ResultServiceLocatorInterface
      */
     private $negotiator;
 
+    /**
+     * @var EventDispatcherInterface
+     */
+    private $eventDispatcher;
+
     public function __construct(
-        Negotiator $negotiator
+        Negotiator $negotiator,
+        EventDispatcherInterface $eventDispatcher
     ) {
-        $this->negotiator = $negotiator;
+        $this->negotiator      = $negotiator;
+        $this->eventDispatcher = $eventDispatcher;
     }
 
     public function getResult(Request $request, ResultDataInterface $resultData): ResultInterface
     {
         $format = $this->getFormat($request);
         $result = $this->container->get(sprintf('%s::%s', __CLASS__, $format));
+        $event  = new NegotiatedResultDataEvent($result);
+
         $result->setResultData($resultData);
+        $this->eventDispatcher->dispatch($event);
 
-        // todo: dispatch negotiated result
-
-        return $result;
+        return $event->getSubject();
     }
 
     private function getFormat(Request $request): string

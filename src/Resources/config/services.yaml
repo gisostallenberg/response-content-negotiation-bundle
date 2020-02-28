@@ -13,6 +13,7 @@ services:
         public: true
         arguments:
             $negotiator: '@Negotiation\Negotiator'
+            $eventDispatcher: '@event_dispatcher'
         calls:
             - method: setContainer
               arguments:
