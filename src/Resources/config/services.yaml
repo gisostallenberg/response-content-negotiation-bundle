@@ -12,12 +12,17 @@ services:
     GisoStallenberg\Bundle\ResponseContentNegotiationBundle\Content\ResultServiceLocator:
         public: true
         arguments:
-            $negotiator: '@Negotiation\Negotiator'
+            $negotiator: '@GisoStallenberg\Bundle\ResponseContentNegotiationBundle\Negotiation\FormatNegotiator'
             $eventDispatcher: '@event_dispatcher'
         calls:
             - method: setContainer
               arguments:
                   - '@service_container'
+
+    GisoStallenberg\Bundle\ResponseContentNegotiationBundle\Negotiation\FormatNegotiator:
+        public: true
+        arguments:
+            $negotiator: '@Negotiation\Negotiator'
 
     GisoStallenberg\Bundle\ResponseContentNegotiationBundle\Content\ResultServiceLocatorInterface: '@GisoStallenberg\Bundle\ResponseContentNegotiationBundle\Content\ResultServiceLocator'
 
