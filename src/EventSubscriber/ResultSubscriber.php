@@ -11,7 +11,7 @@ namespace GisoStallenberg\Bundle\ResponseContentNegotiationBundle\EventSubscribe
 
 use GisoStallenberg\Bundle\ResponseContentNegotiationBundle\Content\ResultInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
-use Symfony\Component\HttpKernel\Event\GetResponseForControllerResultEvent;
+use Symfony\Component\HttpKernel\Event\ViewEvent;
 use Symfony\Component\HttpKernel\KernelEvents;
 
 class ResultSubscriber implements EventSubscriberInterface
@@ -26,7 +26,7 @@ class ResultSubscriber implements EventSubscriberInterface
         ];
     }
 
-    public function onKernelView(GetResponseForControllerResultEvent $event): void
+    public function onKernelView(ViewEvent $event): void
     {
         $result = $event->getControllerResult();
 

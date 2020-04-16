@@ -9,7 +9,7 @@ declare(strict_types=1);
 
 namespace GisoStallenberg\Bundle\ResponseContentNegotiationBundle\Content;
 
-use Symfony\Component\DependencyInjection\ServiceSubscriberInterface;
+use Symfony\Contracts\Service\ServiceSubscriberInterface;
 use Symfony\Component\HttpFoundation\Request;
 
 interface ResultServiceLocatorInterface extends ServiceSubscriberInterface
