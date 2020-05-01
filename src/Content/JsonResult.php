@@ -17,12 +17,25 @@ class JsonResult extends SerializedResult
     public function getResponse(): Response
     {
         $context = $this->getContext();
+        $data    = $this->getResultData()->getData();
 
         return new JsonResponse(
-            $this->getSerializer()->serialize($this->getResultData()->getData(), 'json', $context),
-            Response::HTTP_OK,
+            $this->getSerializer()->serialize($data, 'json', $context),
+            $this->getStatusCode($data),
             [],
             true
         );
+    }
+
+    /**
+     * @param array<string, mixed> $data
+     */
+    private function getStatusCode(array $data): int
+    {
+        if (array_key_exists('errors', $data) && is_array($data['errors']) && count($data['errors']) > 0) {
+            return Response::HTTP_BAD_REQUEST;
+        }
+
+        return Response::HTTP_OK;
     }
 }
