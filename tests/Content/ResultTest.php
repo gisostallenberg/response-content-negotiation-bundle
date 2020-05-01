@@ -7,7 +7,7 @@ declare(strict_types=1);
  * (c) Giso Stallenberg.
  */
 
-namespace GisoStallenberg\Bundle\ResponseContentNegotiationBundle\Tests\Content;
+namespace GisoStallenberg\Bundle\Tests\ResponseContentNegotiationBundle\Content;
 
 use GisoStallenberg\Bundle\ResponseContentNegotiationBundle\Content\ResultData;
 use GisoStallenberg\Bundle\ResponseContentNegotiationBundle\Content\ResultInterface;
@@ -87,6 +87,9 @@ class ResultTest extends TestCase
         $this->assertEquals(Response::HTTP_OK, $subject->getResponse()->getStatusCode(), 'Asserting that the default response status code is HTTP 200 OK.');
     }
 
+    /**
+     * @return array<mixed>
+     */
     public function getTestClass(): array
     {
         $requestStack = new RequestStack();
