@@ -36,7 +36,7 @@ abstract class SerializedResult extends Result
     {
         $context    = new Context();
         $resultData = $this->getResultData();
-        if ($resultData->hasArgument('groups')) {
+        if ($resultData !== null && $resultData->hasArgument('groups')) {
             $groups = $resultData->getArgument('groups');
             $context->addGroups($groups);
         }
