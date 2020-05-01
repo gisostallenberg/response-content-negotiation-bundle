@@ -7,7 +7,7 @@ declare(strict_types=1);
  * (c) Giso Stallenberg.
  */
 
-namespace GisoStallenberg\Bundle\ResponseContentNegotiationBundle\Tests\Event;
+namespace GisoStallenberg\Bundle\Tests\ResponseContentNegotiationBundle\Event;
 
 use GisoStallenberg\Bundle\ResponseContentNegotiationBundle\Content\ResultInterface;
 use GisoStallenberg\Bundle\ResponseContentNegotiationBundle\Event\NegotiatedResultDataEvent;
@@ -41,6 +41,9 @@ class NegotiatedResultDataEventTest extends TestCase
         $this->assertSame($result, $subject->getSubject(), 'Asserting that the result can be set and retrieved');
     }
 
+    /**
+     * @return array<mixed>
+     */
     public function getTestClass(): array
     {
         $subject   = $this->createMock(ResultInterface::class);

@@ -32,10 +32,13 @@ class HtmlResult extends Result
         $resultData = $this->getResultData();
         $template   = $this->getTemplate($resultData);
 
-        return new Response($this->twig->render(
-            $template,
-            $resultData->getData()
-        ));
+        return new Response(
+            $this->twig->render(
+                $template,
+                $resultData->getData()
+            ),
+            $this->getStatusCode()
+        );
     }
 
     private function getTemplate(ResultDataInterface $resultData): string

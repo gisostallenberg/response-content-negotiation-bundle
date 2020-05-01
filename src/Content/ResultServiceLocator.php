@@ -12,6 +12,7 @@ namespace GisoStallenberg\Bundle\ResponseContentNegotiationBundle\Content;
 use GisoStallenberg\Bundle\ResponseContentNegotiationBundle\Event\NegotiatedResultDataEvent;
 use GisoStallenberg\Bundle\ResponseContentNegotiationBundle\Negotiation\NegotiatorInterface;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Contracts\EventDispatcher\EventDispatcherInterface;
 use Symfony\Contracts\Service\ServiceSubscriberTrait;
 
@@ -37,12 +38,13 @@ class ResultServiceLocator implements ResultServiceLocatorInterface
         $this->eventDispatcher = $eventDispatcher;
     }
 
-    public function getResult(Request $request, ResultDataInterface $resultData): ResultInterface
+    public function getResult(Request $request, ResultDataInterface $resultData, int $statusCode = Response::HTTP_OK): ResultInterface
     {
         $format = $this->negotiator->getResult($request);
         $result = $this->container->get(sprintf('%s::%s', __CLASS__, $format));
         $event  = new NegotiatedResultDataEvent($result);
 
+        $result->setStatusCode($statusCode);
         $result->setResultData($resultData);
         $this->eventDispatcher->dispatch($event);
 

@@ -7,7 +7,7 @@ declare(strict_types=1);
  * (c) Giso Stallenberg.
  */
 
-namespace GisoStallenberg\Bundle\ResponseContentNegotiationBundle\Tests\Content;
+namespace GisoStallenberg\Bundle\Tests\ResponseContentNegotiationBundle\Content;
 
 use GisoStallenberg\Bundle\ResponseContentNegotiationBundle\Content\ResultData;
 use PHPUnit\Framework\TestCase;
@@ -85,6 +85,9 @@ class ResultDataTest extends TestCase
         $this->assertFalse($subject->hasArgument('corge'), 'Asserting that you can check if an argument is set on the resultdata.');
     }
 
+    /**
+     * @return array<mixed>
+     */
     public function getTestClass(): array
     {
         $name      = 'corge';
