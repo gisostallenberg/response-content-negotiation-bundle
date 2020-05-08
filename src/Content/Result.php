@@ -10,6 +10,7 @@ declare(strict_types=1);
 namespace GisoStallenberg\Bundle\ResponseContentNegotiationBundle\Content;
 
 use Symfony\Component\HttpFoundation\RequestStack;
+use Symfony\Component\HttpFoundation\Response;
 
 abstract class Result implements ResultInterface
 {
@@ -22,6 +23,11 @@ abstract class Result implements ResultInterface
      * @var ResultDataInterface
      */
     private $resultData;
+
+    /**
+     * @var int
+     */
+    private $statusCode = Response::HTTP_OK;
 
     public function __construct(RequestStack $request)
     {
@@ -38,5 +44,17 @@ abstract class Result implements ResultInterface
     public function getResultData(): ?ResultDataInterface
     {
         return $this->resultData;
+    }
+
+    public function setStatusCode(int $statusCode): ResultInterface
+    {
+        $this->statusCode = $statusCode;
+
+        return $this;
+    }
+
+    public function getStatusCode(): int
+    {
+        return $this->statusCode;
     }
 }

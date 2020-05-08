@@ -20,7 +20,7 @@ class JsonResult extends SerializedResult
 
         return new JsonResponse(
             $this->getSerializer()->serialize($this->getResultData()->getData(), 'json', $context),
-            Response::HTTP_OK,
+            $this->getStatusCode(),
             [],
             true
         );

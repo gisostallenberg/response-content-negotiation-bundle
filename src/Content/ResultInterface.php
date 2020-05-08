@@ -11,7 +11,7 @@ namespace GisoStallenberg\Bundle\ResponseContentNegotiationBundle\Content;
 
 use Symfony\Component\HttpFoundation\Response;
 
-interface ResultInterface
+interface ResultInterface extends ResultStatusCodeInterface
 {
     public function setResultData(ResultDataInterface $resultData): self;
 

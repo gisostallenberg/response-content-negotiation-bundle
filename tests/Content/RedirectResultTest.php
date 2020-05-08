@@ -7,7 +7,7 @@ declare(strict_types=1);
  * (c) Giso Stallenberg.
  */
 
-namespace GisoStallenberg\Bundle\ResponseContentNegotiationBundle\Tests\Content;
+namespace GisoStallenberg\Bundle\Tests\ResponseContentNegotiationBundle\Content;
 
 use GisoStallenberg\Bundle\ResponseContentNegotiationBundle\Content\RedirectResult;
 use PHPUnit\Framework\TestCase;
@@ -40,6 +40,9 @@ class RedirectResultTest extends TestCase
         $this->assertEquals($url, $result->getTargetUrl(), 'Asserting that the redirect response contains the correct redirect url.');
     }
 
+    /**
+     * @return array<mixed>
+     */
     public function getTestClass(): array
     {
         $url = '/wibble';
