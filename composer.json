@@ -9,7 +9,7 @@
         }
     ],
     "require": {
-        "php": "^7.3",
+        "php": "^7.3 || ^8.0",
         "friendsofsymfony/rest-bundle": "^2.7 || 3.0@dev || ^3.0",
         "symfony/config": "^4.4 || ^5.0",
         "symfony/dependency-injection": "^4.4 || ^5.0",
@@ -23,10 +23,10 @@
         "willdurand/negotiation": "^2.3 || ^3.0"
     },
     "require-dev": {
-        "friendsofphp/php-cs-fixer": "^2.16",
-        "jms/serializer-bundle": "^3.5",
+        "friendsofphp/php-cs-fixer": "^3.6",
+        "jms/serializer-bundle": "^4.0",
         "localheinz/composer-normalize": "^2.2",
-        "maglnet/composer-require-checker": "^2.0",
+        "maglnet/composer-require-checker": "^3.8",
         "phpstan/phpstan": "^0.12.8",
         "phpunit/phpunit": "^8.5",
         "sensiolabs/security-checker": "^6.0",
@@ -38,7 +38,11 @@
         "preferred-install": {
             "*": "dist"
         },
-        "sort-packages": true
+        "sort-packages": true,
+        "allow-plugins": {
+            "ocramius/package-versions": true,
+            "localheinz/composer-normalize": true
+        }
     },
     "autoload": {
         "psr-4": {

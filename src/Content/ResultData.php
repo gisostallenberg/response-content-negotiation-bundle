@@ -35,9 +35,9 @@ class ResultData implements ResultDataInterface
         array $data = [],
         array $arguments = []
     ) {
-        $this->name       = $name;
-        $this->data       = $data;
-        $this->arguments  = $arguments;
+        $this->name      = $name;
+        $this->data      = $data;
+        $this->arguments = $arguments;
     }
 
     public function getName(): string
