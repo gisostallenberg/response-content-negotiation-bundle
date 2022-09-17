@@ -92,7 +92,7 @@ class ResultControllerTest extends WebTestCase
             return;
         }
 
-        $jsonResult = \json_decode($content, true);
+        $jsonResult = \json_decode($content, true, 512, JSON_THROW_ON_ERROR);
 
         $this->assertIsArray($jsonResult);
         $this->assertEquals(['test' => 'result data'], $jsonResult);

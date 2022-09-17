@@ -18,7 +18,6 @@ use Symfony\Bundle\TwigBundle\TwigBundle;
 use Symfony\Component\Config\Loader\LoaderInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Kernel;
-use Symfony\Component\Routing\RouteCollectionBuilder;
 
 class ResponseContentNegotiationBundleControllerKernel extends Kernel
 {
@@ -26,7 +25,7 @@ class ResponseContentNegotiationBundleControllerKernel extends Kernel
 
     private const CONFIG_EXTS = '.{php,xml,yaml,yml}';
 
-    public function registerBundles()
+    public function registerBundles(): iterable
     {
         return [
             new GisoStallenbergResponseContentNegotiationBundle(),
@@ -37,7 +36,7 @@ class ResponseContentNegotiationBundleControllerKernel extends Kernel
         ];
     }
 
-    protected function configureRoutes(RouteCollectionBuilder $routes): void
+    protected function configureRoutes(\Symfony\Component\Routing\Loader\Configurator\RoutingConfigurator $routes): void
     {
         $routes->import(__DIR__.'/Resources/config/routes.yaml');
     }
@@ -49,7 +48,7 @@ class ResponseContentNegotiationBundleControllerKernel extends Kernel
         $loader->load($confDir.'/{services}'.self::CONFIG_EXTS, 'glob');
     }
 
-    public function getCacheDir()
+    public function getCacheDir(): string
     {
         return __DIR__.'/var/cache/'.spl_object_hash($this);
     }

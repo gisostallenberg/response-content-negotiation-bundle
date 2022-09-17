@@ -14,24 +14,12 @@ use Symfony\Component\HttpFoundation\Response;
 
 abstract class Result implements ResultInterface
 {
-    /**
-     * @var RequestStack
-     */
-    private $request;
+    private ?\GisoStallenberg\Bundle\ResponseContentNegotiationBundle\Content\ResultDataInterface $resultData = null;
 
-    /**
-     * @var ResultDataInterface
-     */
-    private $resultData;
+    private int $statusCode = Response::HTTP_OK;
 
-    /**
-     * @var int
-     */
-    private $statusCode = Response::HTTP_OK;
-
-    public function __construct(RequestStack $request)
+    public function __construct(protected RequestStack $request)
     {
-        $this->request = $request;
     }
 
     public function setResultData(ResultDataInterface $resultData): ResultInterface

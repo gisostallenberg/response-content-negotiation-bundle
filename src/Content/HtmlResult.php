@@ -15,16 +15,9 @@ use Twig\Environment;
 
 class HtmlResult extends Result
 {
-    /**
-     * @var Environment
-     */
-    private $twig;
-
-    public function __construct(RequestStack $request, Environment $twig)
+    public function __construct(RequestStack $request, private Environment $twig)
     {
         parent::__construct($request);
-
-        $this->twig = $twig;
     }
 
     public function getResponse(): Response

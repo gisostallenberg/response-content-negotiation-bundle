@@ -17,23 +17,15 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class ResultController
 {
-    /**
-     * @Route("/get/result", methods={"GET"})
-     */
-    public function resultAction(
-        ResultServiceLocator $resultServiceLocator,
-        Request $request
-    ): ResultInterface {
+    #[Route(path: '/get/result', methods: ['GET'])]
+    public function resultAction(ResultServiceLocator $resultServiceLocator, Request $request): ResultInterface
+    {
         return $resultServiceLocator->getResult($request, new ResultData('test', ['test' => 'result data'], ['template' => 'test.html.twig', 'groups' => ['foo', 'bar']]));
     }
 
-    /**
-     * @Route("/get/result-with-default", methods={"GET"})
-     */
-    public function resultActionWithDefault(
-        ResultServiceLocator $resultServiceLocator,
-        Request $request
-    ): ResultInterface {
+    #[Route(path: '/get/result-with-default', methods: ['GET'])]
+    public function resultActionWithDefault(ResultServiceLocator $resultServiceLocator, Request $request): ResultInterface
+    {
         return $resultServiceLocator->getResult($request, new ResultData('test', ['test' => 'result data']));
     }
 }
