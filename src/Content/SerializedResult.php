@@ -15,16 +15,9 @@ use Symfony\Component\HttpFoundation\RequestStack;
 
 abstract class SerializedResult extends Result
 {
-    /**
-     * @var Serializer
-     */
-    private $serializer;
-
-    public function __construct(RequestStack $request, Serializer $serializer)
+    public function __construct(RequestStack $request, private Serializer $serializer)
     {
         parent::__construct($request);
-
-        $this->serializer = $serializer;
     }
 
     public function getSerializer(): Serializer

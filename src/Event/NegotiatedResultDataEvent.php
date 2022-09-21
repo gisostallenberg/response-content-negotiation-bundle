@@ -15,7 +15,6 @@ use Symfony\Component\EventDispatcher\GenericEvent;
 class NegotiatedResultDataEvent extends GenericEvent
 {
     /**
-     * @param ResultInterface      $subject
      * @param array<string, mixed> $arguments
      */
     public function __construct(ResultInterface $subject = null, array $arguments = [])

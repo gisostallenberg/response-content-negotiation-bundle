@@ -24,14 +24,8 @@ class FormatNegotiator implements NegotiatorInterface
         'application/xml',
     ];
 
-    /**
-     * @var Negotiator
-     */
-    private $negotiator;
-
-    public function __construct(Negotiator $negotiator)
+    public function __construct(private Negotiator $negotiator)
     {
-        $this->negotiator = $negotiator;
     }
 
     public function getResult(Request $request): string
