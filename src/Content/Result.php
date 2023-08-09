@@ -19,10 +19,7 @@ abstract class Result implements ResultInterface
      */
     private $request;
 
-    /**
-     * @var ResultDataInterface
-     */
-    private $resultData;
+    private ?ResultDataInterface $resultData = null;
 
     /**
      * @var int

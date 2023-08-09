@@ -10,11 +10,12 @@ declare(strict_types=1);
 namespace GisoStallenberg\Bundle\ResponseContentNegotiationBundle;
 
 use GisoStallenberg\Bundle\ResponseContentNegotiationBundle\DependencyInjection\ResponseContentNegotiationExtension;
+use Symfony\Component\DependencyInjection\Extension\ExtensionInterface;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
 class GisoStallenbergResponseContentNegotiationBundle extends Bundle
 {
-    public function getContainerExtension()
+    public function getContainerExtension(): ?ExtensionInterface
     {
         return new ResponseContentNegotiationExtension();
     }

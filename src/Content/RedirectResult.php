@@ -14,14 +14,8 @@ use Symfony\Component\HttpFoundation\Response;
 
 class RedirectResult extends Result
 {
-    /**
-     * @var string
-     */
-    private $url;
-
-    public function __construct(string $url)
+    public function __construct(private readonly string $url)
     {
-        $this->url = $url;
     }
 
     public function getResponse(): Response

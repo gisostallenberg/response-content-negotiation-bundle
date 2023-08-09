@@ -12,10 +12,12 @@ namespace GisoStallenberg\Bundle\ResponseContentNegotiationBundle\Event;
 use GisoStallenberg\Bundle\ResponseContentNegotiationBundle\Content\ResultInterface;
 use Symfony\Component\EventDispatcher\GenericEvent;
 
+/**
+ * @method ResultInterface getSubject
+ */
 class NegotiatedResultDataEvent extends GenericEvent
 {
     /**
-     * @param ResultInterface      $subject
      * @param array<string, mixed> $arguments
      */
     public function __construct(ResultInterface $subject = null, array $arguments = [])

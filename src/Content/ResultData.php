@@ -12,32 +12,14 @@ namespace GisoStallenberg\Bundle\ResponseContentNegotiationBundle\Content;
 class ResultData implements ResultDataInterface
 {
     /**
-     * @var string
-     */
-    private $name;
-
-    /**
-     * @var array<mixed, mixed>
-     */
-    private $data = [];
-
-    /**
-     * @var array<string, mixed>
-     */
-    private $arguments = [];
-
-    /**
      * @param array<mixed, mixed>  $data
      * @param array<string, mixed> $arguments
      */
     public function __construct(
-        string $name,
-        array $data = [],
-        array $arguments = []
+        private readonly string $name,
+        private readonly array $data = [],
+        private array $arguments = []
     ) {
-        $this->name      = $name;
-        $this->data      = $data;
-        $this->arguments = $arguments;
     }
 
     public function getName(): string

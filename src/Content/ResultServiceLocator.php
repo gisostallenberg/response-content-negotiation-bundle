@@ -21,27 +21,21 @@ class ResultServiceLocator implements ResultServiceLocatorInterface
     use ServiceSubscriberTrait;
 
     /**
-     * @var NegotiatorInterface
-     */
-    private $negotiator;
-
-    /**
      * @var EventDispatcherInterface
      */
     private $eventDispatcher;
 
     public function __construct(
-        NegotiatorInterface $negotiator,
+        private readonly NegotiatorInterface $negotiator,
         EventDispatcherInterface $eventDispatcher
     ) {
-        $this->negotiator      = $negotiator;
         $this->eventDispatcher = $eventDispatcher;
     }
 
     public function getResult(Request $request, ResultDataInterface $resultData, int $statusCode = Response::HTTP_OK): ResultInterface
     {
         $format = $this->negotiator->getResult($request);
-        $result = $this->container->get(sprintf('%s::%s', __CLASS__, $format));
+        $result = $this->container->get(sprintf('%s::%s', self::class, $format));
         $event  = new NegotiatedResultDataEvent($result);
 
         $result->setStatusCode($statusCode);
