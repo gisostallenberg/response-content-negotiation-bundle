@@ -14,7 +14,7 @@ use Symfony\Component\HttpKernel\Bundle\Bundle;
 
 class GisoStallenbergResponseContentNegotiationBundle extends Bundle
 {
-    public function getContainerExtension()
+    public function getContainerExtension(): ?\Symfony\Component\DependencyInjection\Extension\ExtensionInterface
     {
         return new ResponseContentNegotiationExtension();
     }
